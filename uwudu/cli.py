@@ -7,15 +7,17 @@ import click
 
 table = StyledTable()
 
+
 @click.group()
 def cli():
     pass
 
+
 # ----------------- ADD TASK ---------------------
-@cli.command(help = "--- \033[3madd your task to todo list\033[0m \n")
-@click.argument('task', nargs=-1, required=True)
+@cli.command(help="--- \033[3madd your task to todo list\033[0m \n")
+@click.argument("task", nargs=-1, required=True)
 def add(task):
-    task = ' '.join(task)
+    task = " ".join(task)
     time = datetime.now().strftime("%d %b %y %H:%M")
     new_task = f" {len(read_todo_list()) + 1} │ {task} │ ongoing │ {time} │ {time} "
     todo_list = read_todo_list()
@@ -26,69 +28,82 @@ def add(task):
 
 
 # ----------------- SET TASK STATUS ---------------------
-@cli.command(name = 'status', help = "--- \033[3mset task status, eg: uwudu status 'task id' 'status'\033[0m \n")
-@click.argument('id', type=int, required=True)
-@click.argument('status', required=True)
+@cli.command(
+    name="status",
+    help="--- \033[3mset task status, eg: uwudu status 'task id' 'status'\033[0m \n",
+)
+@click.argument("id", type=int, required=True)
+@click.argument("status", required=True)
 def set_status(id, status):
     todo_list = read_todo_list()
     time = datetime.now().strftime("%d %b %y %H:%M")
     if 1 <= id <= len(todo_list):
-        task = todo_list[id - 1].split('│')
+        task = todo_list[id - 1].split("│")
         todo_list[id - 1] = f" {id} │ {task[1]} │ {status} │ {task[3]} │ {time} "
         write_todo_list(todo_list)
-        click.echo(f"Updated the status of task - 1'{id}' in the todo list  \033[3m\_( U w U )_/\033[0m \n")
+        click.echo(
+            f"Updated the status of task - 1'{id}' in the todo list  \033[3m\_( U w U )_/\033[0m \n"
+        )
     else:
-        click.echo("Invalid task number. Use 'show' to see the list and select a valid task number.")
+        click.echo(
+            "Invalid task number. Use 'show' to see the list and select a valid task number."
+        )
     table.display(todo_list)
 
 
 # ----------------- MARK TASK FINISHED ---------------------
-@cli.command(help = "--- \033[3mfinish task, eg: uwudu finish 'task id'\033[0m \n")
-@click.argument('id', type=int, required=True)
+@cli.command(help="--- \033[3mfinish task, eg: uwudu finish 'task id'\033[0m \n")
+@click.argument("id", type=int, required=True)
 def finish(id):
     todo_list = read_todo_list()
     time = datetime.now().strftime("%d %b %y %H:%M")
     if 1 <= id <= len(todo_list):
-        task = todo_list[id - 1].split('│')
+        task = todo_list[id - 1].split("│")
         todo_list[id - 1] = f" {id} │ {task[1]} │ done │ {task[3]} │ {time} "
         write_todo_list(todo_list)
         click.echo(f"marked task -{id} as finished \033[3m\_( U w U )_/\033[0m \n")
     else:
-        click.echo("Invalid task number. Use 'show' to see the list and select a valid task number.")
+        click.echo(
+            "Invalid task number. Use 'show' to see the list and select a valid task number."
+        )
     table.display(todo_list)
 
 
 # ----------------- REMOVE TASK ---------------------
-@cli.command(help = "--- \033[3mremove the task with task number from the list\033[0m \n")
-@click.argument('id', type=int)
+@cli.command(help="--- \033[3mremove the task with task number from the list\033[0m \n")
+@click.argument("id", type=int)
 def remove(id):
     todo_list = read_todo_list()
 
     if 1 <= id <= len(todo_list):
-        removed_task = todo_list.pop(id - 1).split('│')[1].strip()
+        removed_task = todo_list.pop(id - 1).split("│")[1].strip()
         write_todo_list(todo_list)
-        click.echo(f"Task '{removed_task}' removed from the todo list  \033[3m\_( U w U )_/\033[0m \n")
+        click.echo(
+            f"Task '{removed_task}' removed from the todo list  \033[3m\_( U w U )_/\033[0m \n"
+        )
     else:
-        click.echo("Invalid task number. Use 'show' to see the list and select a valid task number.")
+        click.echo(
+            "Invalid task number. Use 'show' to see the list and select a valid task number."
+        )
     table.display(todo_list)
 
 
 # ----------------- SHOW TASK LIST ---------------------
-@cli.command(help = "--- \033[3mlist all of your tasks\033[0m \n")
+@cli.command(help="--- \033[3mlist all of your tasks\033[0m \n")
 def show():
     todo_list = read_todo_list()
     table.display(todo_list)
 
 
 # ----------------- RESET TASK LIST ---------------------
-@cli.command(help = "--- \033[3mreset todo list\033[0m \n")
+@cli.command(help="--- \033[3mreset todo list\033[0m \n")
 def reset():
     click.echo(f"your todo list has been reset! \033[3m\_( U w U )_/\033[0m \n")
     write_todo_list([])
     table.display([])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
 
 ############################# (× __ ×) ###############################
