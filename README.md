@@ -18,7 +18,6 @@ pip install uwudu
 If you use Homebrew, you can install `uwudu` with the following commands:
 
 ```shell
-# Tap the uwudu formulae
 brew tap uwudu/uwudu
 brew install uwudu
 ```
