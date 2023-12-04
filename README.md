@@ -7,7 +7,7 @@ your daily todo list manager now on your cli
 ## Installation
 ### Using Pip
 
-If you use Homebrew, you can install `uwudu` with the following commands:
+If you use pip, you can install `uwudu` with the following commands:
 
 ```shell
 pip install uwudu 
