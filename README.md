@@ -2,26 +2,38 @@
 
 your daily todo list manager now on your cli
 
-*\_(U w U)_/ RISE AND GRIND \_(U w U)_/*
+*(U w U)**** RISE AND GRIND ****(U w U)*
 
 ## Installation
-### Using Homebrew
-
-If you use Homebrew, you can install `uwudu` with the following commands:
-
-```bash
-# Tap the uwudu formulae
-brew tap uwudu/uwudu
-brew install uwudu
-```
-
 ### Using Pip
 
 If you use Homebrew, you can install `uwudu` with the following commands:
 
 ```shell
-pip install uwudu
-export PATH=$PATH:$HOME/go/bin  #to add path, restart terminal or do `source ~/.xyzrc`
+pip install uwudu 
 ```
 
+### Using Homebrew
+
+If you use Homebrew, you can install `uwudu` with the following commands:
+
+```shell
+# Tap the uwudu formulae
+brew tap uwudu/uwudu
+brew install uwudu
+```
+
+### To add path if showing command not found
+
+For Bash users
+```shell
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc
+```
+
+For Zsh users
+```shell
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.zshrc
+source ~/.zshrc
+```
 
