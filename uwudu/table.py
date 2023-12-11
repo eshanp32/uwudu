@@ -49,9 +49,16 @@ class StyledTable:
 
                 self.table.add_row(row_data_aligned)
 
+        self.table.add_row(["" for _ in range(len(self.table.field_names))])
+
+        #custom row to show pending task message
+        message = f"\033[1;3m You have {pending_count} pending todos \033[0m"
+        centered_message_row = [""] * len(self.table.field_names)
+        centered_message_row[2] = message.center(max_widths[2])
+        self.table.add_row(centered_message_row)
+
         click.echo(self.table)
 
-        click.echo(f"\nYou have {pending_count} pending todos.")
 
     def calculate_max_widths_and_pending_todos(self, todo_list):
         max_widths = [0] * len(todo_list[0].split(" │ "))

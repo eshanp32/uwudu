@@ -9,6 +9,7 @@ table = StyledTable()
 
 
 @click.group()
+@click.version_option()
 def cli():
     pass
 
@@ -42,7 +43,7 @@ def set_status(id, status):
         todo_list[id - 1] = f" {id} │ {task[1]} │ {status} │ {task[3]} │ {time} "
         write_todo_list(todo_list)
         click.echo(
-            f"Updated the status of task - 1'{id}' in the todo list  \033[3m\_( U w U )_/\033[0m \n"
+            f"Updated the status of task - '{id}' in the todo list  \033[3m\_( U w U )_/\033[0m \n"
         )
     else:
         click.echo(
