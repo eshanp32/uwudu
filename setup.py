@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="uwudu",
-    version="0.1.0",
+    version="1.0.0",
     description="your cli todo list manager (U w U)",
     packages=find_packages(),
     include_package_data=True,
