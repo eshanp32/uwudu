@@ -1,3 +1,5 @@
+""" (U w U)_/××××××  setup file  ××××××\_(U w U) """
+
 from setuptools import setup, find_packages
 
 setup(
