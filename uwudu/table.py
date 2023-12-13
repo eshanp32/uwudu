@@ -26,10 +26,11 @@ class StyledTable:
         self.table.clear_rows()
         pending_count = 0
 
+        max_widths, pending_count = self.calculate_max_widths_and_pending_todos(
+            todo_list
+        )
+
         if len(todo_list) > 0:
-            max_widths, pending_count = self.calculate_max_widths_and_pending_todos(
-                todo_list
-            )
 
             for idx, todo in enumerate(todo_list, start=1):
                 todo_data = todo.split(" │ ")
@@ -62,7 +63,7 @@ class StyledTable:
         click.echo(self.table)
 
     def calculate_max_widths_and_pending_todos(self, todo_list):
-        max_widths = [0] * len(todo_list[0].split(" │ "))
+        max_widths = [0] * len(self.table.field_names)
         count = 0
 
         for todo in todo_list:
